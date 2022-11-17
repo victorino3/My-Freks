@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    android:title="My Workspace">
+
+    <group android:checkableBehavior="single" >
+
+        <item
+            android:id="@+id/nav_create"
+            android:icon="@drawable/ic_baseline_add_task_24"
+            android:title="@string/menu_create_task" />
+        <item
+            android:id="@+id/nav_task"
+            android:icon="@drawable/ic_baseline_task_24"
+            android:title="@string/menu_task" />
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_baseline_info_24"
+            android:title="@string/menu_about_app" />
+    </group>
+</menu>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_create">
+
+    <fragment
+        android:id="@+id/nav_create"
+        android:name="com.vicvilian.schoolagenda.ui.Create.CreateFragment"
+        android:label="@string/menu_create_task"
+        tools:layout="@layout/fragment_create" />
+    <fragment
+        android:id="@+id/nav_task"
+        android:name="com.vicvilian.schoolagenda.ui.Task.TaskFragment"
+        android:label="@string/menu_task"
+        tools:layout="@layout/fragment_task" />
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="com.vicvilian.schoolagenda.ui.Task.TaskFragment"
+        android:label="@string/menu_about_app"
+        tools:layout="@layout/fragment_about" />
+
+</navigation>
