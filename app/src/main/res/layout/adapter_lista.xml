@@ -11,18 +11,20 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/title_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:text="@string/Title" />
+            android:text="@string/Title"
+            android:textAlignment="textStart" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/startAt_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/start" />
+            android:text="@string/start"
+            android:textAlignment="center" />
 
     </LinearLayout>
 
@@ -32,24 +34,27 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/teacherUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/teacher" />
+            android:text="@string/teacher"
+            android:textAlignment="textStart" />
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/Unite_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/unidade" />
+            android:text="@string/unidade"
+            android:textAlignment="center" />
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/timeLeft_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/time_left" />
+        android:text="@string/time_left"
+        android:textAlignment="textStart" />
 
 </LinearLayout>
