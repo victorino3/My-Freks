@@ -16,6 +16,7 @@
             android:name=".MainActivity2"
             android:exported="false"
             android:label="@string/title_activity_main2"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.SchoolAgenda.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"

@@ -24,4 +24,20 @@
     <string name="title_activity_main2">MainActivity2</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Title">Title</string>
+    <string name="description">Items can be anything: a task, a customer, a document, or any object.</string>
+    <string name="date">Set a date for the new item.</string>
+    <string name="add_task">Add  new  Task</string>
+    <string name="school_frequency">School Test</string>
+    <string name="exame">School Exam</string>
+    <string name="week">Week Plan</string>
+    <string name="Select">Select one option</string>
+    <string name="save">Save Task</string>
+    <string name="unidade">Curricular Unit</string>
+    <string name="teacher">Teacher</string>
+    <string name="contact">Leave here the contacts of colleagues in the group (optional)</string>
+    <string name="date_new">Set Day</string>
+    <string name="time">Set Time</string>
+    <string name="start">start at</string>
+    <string name="time_left">Time left</string>
 </resources>
