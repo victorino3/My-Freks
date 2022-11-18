@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -28,10 +30,20 @@ public class CreateFragment extends Fragment {
     private int mYear, mMonth, mDay, mHour, mMinute;
     private TextView select_Time;
     private TextView select_Date;
-    private TextView btn_Time;
-    private TextView btn_Date;
+    private Button btn_Time;
+    private Button btn_Date;
     private EditText title;
     private Button btn;
+    //RadioGroup and element connected
+    private RadioGroup radioGroupId;
+    private TextView teacher;
+    private TextView unitCurricular;
+    private TextView contact;
+    //RadioButton
+    private RadioButton exam;
+    private RadioButton school;
+    private RadioButton week;
+
 
 
     public CreateFragment() {
@@ -51,8 +63,23 @@ public class CreateFragment extends Fragment {
         btn_Time = view.findViewById(R.id.button_time);
         btn_Date = view.findViewById(R.id.button_date);
         btn = view.findViewById(R.id.button_save_task);
+
+        //RadioGroup Ids
+        radioGroupId = view.findViewById(R.id.radioGroupId);
+        exam = view.findViewById(R.id.radioButton_Exam);
+        school = view.findViewById(R.id.radioButtonSchool);
+        week = view.findViewById(R.id.radioButton_Week);
+        teacher = view.findViewById(R.id.teacher_name);
+        unitCurricular = view.findViewById(R.id.Currilar_unit);
+        contact = view.findViewById(R.id.collegue_contact);
+
+        //Hide elements
+        getTeacher().setVisibility(View.GONE);
+        getUnitCurricular().setVisibility(View.GONE);
+        getContact().setVisibility(View.GONE);
+
         //Setting date
-        btn_Date.setOnClickListener(new View.OnClickListener() {
+        getBtn_Date().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final Calendar c = Calendar.getInstance();
@@ -68,7 +95,7 @@ public class CreateFragment extends Fragment {
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
-                                select_Date.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                                getSelect_Date().setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
 
                             }
                         }, mYear, mMonth, mDay);
@@ -76,7 +103,7 @@ public class CreateFragment extends Fragment {
             }
         });
         //Setting time
-        btn_Time.setOnClickListener(new View.OnClickListener() {
+        getBtn_Time().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final Calendar c = Calendar.getInstance();
@@ -91,17 +118,81 @@ public class CreateFragment extends Fragment {
                             public void onTimeSet(TimePicker view, int hourOfDay,
                                                   int minute) {
 
-                                select_Time.setText(hourOfDay + ":" + minute);
+                                getSelect_Time().setText(hourOfDay + ":" + minute);
                             }
                         }, mHour, mMinute, false);
                 timePickerDialog.show();
             }
         });
 
-
+        //Setting radioGroup
+        getRadioGroupId().setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checked) {
+                if (getExam().getId() == checked || getSchool().getId() == checked){
+                    getTeacher().setVisibility(View.VISIBLE);
+                    getUnitCurricular().setVisibility(View.VISIBLE);
+                    getContact().setVisibility(View.VISIBLE);
+                }else{
+                    getTeacher().setVisibility(View.GONE);
+                    getUnitCurricular().setVisibility(View.GONE);
+                    getContact().setVisibility(View.GONE);
+                }
+            }
+        });
 
         return view;
     }
 
+    public TextView getSelect_Time() {
+        return select_Time;
+    }
 
+    public TextView getSelect_Date() {
+        return select_Date;
+    }
+
+    public Button getBtn_Time() {
+        return btn_Time;
+    }
+
+    public Button getBtn_Date() {
+        return btn_Date;
+    }
+
+    public EditText getTitle() {
+        return title;
+    }
+
+    public Button getBtn() {
+        return btn;
+    }
+
+    public RadioGroup getRadioGroupId() {
+        return radioGroupId;
+    }
+
+    public TextView getTeacher() {
+        return teacher;
+    }
+
+    public TextView getUnitCurricular() {
+        return unitCurricular;
+    }
+
+    public TextView getContact() {
+        return contact;
+    }
+
+    public RadioButton getExam() {
+        return exam;
+    }
+
+    public RadioButton getSchool() {
+        return school;
+    }
+
+    public RadioButton getWeek() {
+        return week;
+    }
 }

@@ -42,7 +42,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
-        android:id="@+id/radioGroup2"
+        android:id="@+id/radioGroupId"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="54dp"
@@ -94,7 +94,7 @@
         android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupId" />
 
     <EditText
         android:id="@+id/teacher_name"
