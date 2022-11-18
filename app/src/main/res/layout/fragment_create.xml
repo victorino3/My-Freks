@@ -139,12 +139,12 @@
         android:layout_marginEnd="8dp"
         android:text="@string/date_new"
         android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/button_day"
-        app:layout_constraintEnd_toStartOf="@+id/button_day"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button_date"
+        app:layout_constraintEnd_toStartOf="@+id/button_date"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button_day"
+        android:id="@+id/button_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -174,7 +174,7 @@
         android:text="Button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/select_time"
-        app:layout_constraintTop_toBottomOf="@+id/button_day"
+        app:layout_constraintTop_toBottomOf="@+id/button_date"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
     <Button
