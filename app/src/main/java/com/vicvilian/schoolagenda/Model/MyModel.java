@@ -1,7 +1,5 @@
 package com.vicvilian.schoolagenda.Model;
 
-import android.widget.TextView;
-
 public class MyModel {
     private String titleUserData;
     private String startAt;
@@ -14,7 +12,9 @@ public class MyModel {
         this.teacherUserData = teacherUserData;
         this.timeLeft = timeLeft;
     }
+    public static void insertData(){
 
+    }
     public String getTitleUserData() {
         return titleUserData;
     }
