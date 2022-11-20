@@ -1,45 +1,22 @@
 package com.vicvilian.schoolagenda.Model;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-
 public class MyModel {
     private String titleUserData;
     private String startAt;
+    private String start_time;
+    private String taskType;
+    private String colleagues_email;
     private String teacherUserData;
-    private String timeLeft;
 
-    public MyModel(String titleUserData, String startAt, String teacherUserData, String timeLeft) {
+    public MyModel(String titleUserData, String startAt, String start_time, String taskType, String colleagues_email, String teacherUserData) {
         this.titleUserData = titleUserData;
         this.startAt = startAt;
+        this.start_time = start_time;
+        this.taskType = taskType;
+        this.colleagues_email = colleagues_email;
         this.teacherUserData = teacherUserData;
-        this.timeLeft = timeLeft;
     }
-    public static void getAll(SQLiteDatabase database){
-        //Get Data from db
-        Cursor cursor = database.rawQuery("SELECT * FROM Userppointment",null);
-        int task = cursor.getColumnIndex("task");
-        int day = cursor.getColumnIndex("day");
-        int time = cursor.getColumnIndex("time");
-        int task_type = cursor.getColumnIndex("task_type");
-        int discipline = cursor.getColumnIndex("discipline");
-        int teacher = cursor.getColumnIndex("teacher");
-        int colleagues = cursor.getColumnIndex("colleagues");
-        //we must use moveToFirst to restart it
-        cursor.moveToFirst();
-        while (cursor != null){
-            Log.i("Result Task: ", cursor.getString(task));
-            Log.i("Result Day: ", cursor.getString(day));
-            Log.i("Result Time: ", cursor.getString(time));
-            Log.i("Result Task Type: ", cursor.getString(task_type));
-            Log.i("Result Discipline: ", cursor.getString(discipline));
-            Log.i("Result Teacher: ", cursor.getString(teacher));
-            Log.i("Result Colleagues: ", cursor.getString(colleagues));
-            cursor.moveToNext();
-        }
 
-    }
     public String getTitleUserData() {
         return titleUserData;
     }
@@ -47,6 +24,7 @@ public class MyModel {
     public void setTitleUserData(String titleUserData) {
         this.titleUserData = titleUserData;
     }
+
 
     public String getStartAt() {
         return startAt;
@@ -64,11 +42,29 @@ public class MyModel {
         this.teacherUserData = teacherUserData;
     }
 
-    public String getTimeLeft() {
-        return timeLeft;
+    public String getStart_time() {
+        return start_time;
     }
 
-    public void setTimeLeft(String timeLeft) {
-        this.timeLeft = timeLeft;
+    public void setStart_time(String start_time) {
+        this.start_time = start_time;
     }
+
+    public String getTaskType() {
+        return taskType;
+    }
+
+    public void setTaskType(String taskType) {
+        this.taskType = taskType;
+    }
+
+    public String getColleagues_email() {
+        return colleagues_email;
+    }
+
+    public void setColleagues_email(String colleagues_email) {
+        this.colleagues_email = colleagues_email;
+    }
+
+
 }

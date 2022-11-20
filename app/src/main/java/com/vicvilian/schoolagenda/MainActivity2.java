@@ -1,13 +1,12 @@
 package com.vicvilian.schoolagenda;
 
-import android.database.sqlite.SQLiteDatabase;
-import android.os.Bundle;
-import android.view.View;
-import android.view.Menu;
 
+import android.content.ContentValues;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
-
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -15,7 +14,7 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.vicvilian.schoolagenda.Model.MyModel;
+import com.vicvilian.schoolagenda.Helper.HelperDb;
 import com.vicvilian.schoolagenda.databinding.ActivityMain2Binding;
 
 public class MainActivity2 extends AppCompatActivity {
@@ -50,26 +49,20 @@ public class MainActivity2 extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        //Setting Database here
-        try {
-            SQLiteDatabase database = openOrCreateDatabase("Appointments",MODE_PRIVATE,null);
-            //Get data From model class
-            MyModel.getAll(database);
+        //Instance database
 
+        try{
+            HelperDb my_db = new HelperDb(getApplicationContext());
 
 
 
         }catch (Exception e){
-            e.printStackTrace();
+            Log.i("TestError","Something went wrong in insert");
         }
+        HelperDb my_db = new HelperDb(getApplicationContext());
+
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_activity2, menu);
-        return true;
-    }
 
     @Override
     public boolean onSupportNavigateUp() {
