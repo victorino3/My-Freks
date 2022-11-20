@@ -1,9 +1,7 @@
 package com.vicvilian.schoolagenda;
 
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 
@@ -17,6 +15,7 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.vicvilian.schoolagenda.Model.MyModel;
 import com.vicvilian.schoolagenda.databinding.ActivityMain2Binding;
 
 public class MainActivity2 extends AppCompatActivity {
@@ -54,32 +53,11 @@ public class MainActivity2 extends AppCompatActivity {
         //Setting Database here
         try {
             SQLiteDatabase database = openOrCreateDatabase("Appointments",MODE_PRIVATE,null);
+            //Get data From model class
+            MyModel.getAll(database);
 
-            database.execSQL("CREATE TABLE IF NOT EXISTS Userppointment (task VARCHAR, day VARCHAR, time VARCHAR , task_type VARCHAR, discipline VARCHAR, teacher VARCHAR,colleagues TEXT )");
-            database.execSQL("INSERT INTO Userppointment (task,day,time,task_type,discipline,teacher,colleagues)" +
-                    "VALUES ('Develop app','2022-11-19','23:40','School','PDM','Pedro Inacio','victorinogomes1@gmail')");
 
-            //Get Data from db
-           Cursor cursor = database.rawQuery("SELECT * FROM Userppointment",null);
-            int task = cursor.getColumnIndex("task");
-            int day = cursor.getColumnIndex("day");
-            int time = cursor.getColumnIndex("time");
-            int task_type = cursor.getColumnIndex("task_type");
-            int discipline = cursor.getColumnIndex("discipline");
-            int teacher = cursor.getColumnIndex("teacher");
-            int colleagues = cursor.getColumnIndex("colleagues");
-            //we must use moveToFirst to restart it 
-            cursor.moveToFirst();
-            while (cursor != null){
-                Log.i("Result Task: ", cursor.getString(task));
-                Log.i("Result Day: ", cursor.getString(day));
-                Log.i("Result Time: ", cursor.getString(time));
-                Log.i("Result Task Type: ", cursor.getString(task_type));
-                Log.i("Result Discipline: ", cursor.getString(discipline));
-                Log.i("Result Teacher: ", cursor.getString(teacher));
-                Log.i("Result Colleagues: ", cursor.getString(colleagues));
-                cursor.moveToNext();
-            }
+
 
         }catch (Exception e){
             e.printStackTrace();
