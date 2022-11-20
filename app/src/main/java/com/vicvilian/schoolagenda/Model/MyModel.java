@@ -7,14 +7,17 @@ public class MyModel {
     private String taskType;
     private String colleagues_email;
     private String teacherUserData;
+    private String curricular_Unit;
 
-    public MyModel(String titleUserData, String startAt, String start_time, String taskType, String colleagues_email, String teacherUserData) {
+    public MyModel(String titleUserData, String startAt, String start_time, String taskType,String curricular_Unit, String colleagues_email, String teacherUserData) {
         this.titleUserData = titleUserData;
         this.startAt = startAt;
         this.start_time = start_time;
         this.taskType = taskType;
+        this.curricular_Unit = curricular_Unit;
         this.colleagues_email = colleagues_email;
         this.teacherUserData = teacherUserData;
+
     }
 
     public String getTitleUserData() {
@@ -66,5 +69,11 @@ public class MyModel {
         this.colleagues_email = colleagues_email;
     }
 
+    public String getCurricular_Unit() {
+        return curricular_Unit;
+    }
 
+    public void setCurricular_Unit(String curricular_Unit) {
+        this.curricular_Unit = curricular_Unit;
+    }
 }

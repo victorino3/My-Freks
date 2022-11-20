@@ -3,9 +3,9 @@ package com.vicvilian.schoolagenda.Helper;
 import com.vicvilian.schoolagenda.Model.MyModel;
 
 public interface DAO_Interface {
-    void saveUserTask(MyModel data);
-    void writeUserTask(MyModel data);
-    void getAllUserTask(MyModel data);
-    void updateUserTask(MyModel data);
-    void removeUserTask(MyModel data);
+    Boolean saveUserTask(MyModel data);
+    Boolean writeUserTask(MyModel data);
+    Boolean getAllUserTask(MyModel data);
+    Boolean updateUserTask(MyModel data);
+    Boolean removeUserTask(MyModel data);
 }
