@@ -1,8 +1,6 @@
 package com.vicvilian.schoolagenda.Adapter;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +8,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vicvilian.schoolagenda.Model.MyModel;
@@ -78,6 +75,7 @@ public class Adapter extends RecyclerView.Adapter <Adapter.Myadapter>{
             timeLeft = itemView.findViewById(R.id.timeLeft_user);
             curricular_unit = itemView.findViewById(R.id.Unite_user);
             submit = itemView.findViewById(R.id.submit);
+            
 
             //try
 
