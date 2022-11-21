@@ -6,18 +6,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.vicvilian.schoolagenda.Model.MyModel;
 import com.vicvilian.schoolagenda.R;
 
-import java.util.ArrayList;
+
 import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.concurrent.TimeUnit ;
+
+import java.util.Date;
 
 
 public class Adapter extends RecyclerView.Adapter <Adapter.Myadapter>{
@@ -38,16 +40,23 @@ public class Adapter extends RecyclerView.Adapter <Adapter.Myadapter>{
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder( Myadapter holder, int position) {
+        MyModel object = buildModel.get(position);
+        String daytime = object.getStartAt() +" "+object.getStart_time();
+        long millisecond = getRemainTime(daytime);
+        String dayTimes = convertMilliSecondToHourAndDay(millisecond);
         if ( buildModel.size() > 0 ) {
-            MyModel object = buildModel.get(position);
+
             holder.titleUserData.setText(object.getTitleUserData());
             holder.startAt.setText(object.getStartAt());
             holder.teacherUserData.setText(object.getTeacherUserData());
             holder.curricular_unit.setText(object.getCurricular_Unit());
-            holder.timeLeft.setText("There are " + " 32 " + "days and " + object.getStart_time() + " left to finish the submission time");
+            holder.timeLeft.setText(dayTimes);
+
+            Log.i("timeTocal",daytime);
             Log.i("getHere", object.getTitleUserData());
         }else{
             //holder.message();
+            //Should work on it
         }
     }
 
@@ -73,15 +82,35 @@ public class Adapter extends RecyclerView.Adapter <Adapter.Myadapter>{
             timeLeft = itemView.findViewById(R.id.timeLeft_user);
             curricular_unit = itemView.findViewById(R.id.Unite_user);
         }
-        public void message(){
-            Snackbar.make(
-                    itemView,
-                    "Do you to delete?",
-                    Snackbar.LENGTH_INDEFINITE
-            ).setAction("Delete", view1 -> {
-                //you can create new instance of snackBar and use dismiss to remove pop up
-            }).show();
-        }
+
+    }
+    public long getRemainTime(String daytime){
+            try {
+                Date date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+                        .parse(daytime);
+
+                long remaining = date.getTime() - System.currentTimeMillis();
+                System.out.println( daytime);
+                System.out.println(date.getTime() );
+                return remaining;
+                //  return remaining;
+            } catch (ParseException e) {
+                e.printStackTrace();
+                return 0;
+            }
+
+    }
+    public  String convertMilliSecondToHourAndDay(Long millisecond){
+        long hours = TimeUnit.MILLISECONDS.toHours(millisecond);
+        long minutes = TimeUnit.MILLISECONDS.toMinutes(millisecond) % 60;
+        long days = TimeUnit.MILLISECONDS.toDays(millisecond);
+       if (days > 0){
+            return (days+" days "+ hours+"H : "+minutes+"m "+" left");
+       }else if (hours < 0) {return (minutes+" m "+" time left");
+       }else{
+           return (hours+"H : "+minutes+"m "+"time left");
+       }
+
     }
 
 }

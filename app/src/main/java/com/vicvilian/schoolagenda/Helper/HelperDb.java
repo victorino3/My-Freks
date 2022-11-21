@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 public class HelperDb extends SQLiteOpenHelper {
     public static final String name_db = "DB_TASK";
     public static final String table_name = "Appointments";
-    public static final int version = 2;
+    public static final int version = 1;
     public HelperDb(@Nullable Context context) {
         super(context, name_db, null, version);
     }
@@ -30,6 +30,8 @@ public class HelperDb extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-
+        String sql = "DROP TABLE "+HelperDb.table_name;
+        db.execSQL(sql);
+        Log.i("Dropped","Table Deleted");
     }
 }

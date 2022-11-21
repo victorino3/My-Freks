@@ -19,6 +19,6 @@
         android:id="@+id/nav_about"
         android:name="com.vicvilian.schoolagenda.ui.About.AboutFragment"
         android:label="@string/menu_about_app"
-        tools:layout="@layout/fragment_create" />
+        tools:layout="@layout/fragment_about" />
 
 </navigation>

@@ -100,7 +100,7 @@ public class CreateFragment extends Fragment {
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
-                                getSelect_Date().setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                                getSelect_Date().setText(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth);
 
                             }
                         }, mYear, mMonth, mDay);
@@ -114,6 +114,8 @@ public class CreateFragment extends Fragment {
                 final Calendar c = Calendar.getInstance();
                 mHour = c.get(Calendar.HOUR_OF_DAY);
                 mMinute = c.get(Calendar.MINUTE);
+                int second = 50;
+               // mSecond = c.get(Calendar.SECOND);
 
                 // Launch Time Picker Dialog
                 TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(),
@@ -123,9 +125,9 @@ public class CreateFragment extends Fragment {
                             public void onTimeSet(TimePicker view, int hourOfDay,
                                                   int minute) {
 
-                                getSelect_Time().setText(hourOfDay + ":" + minute);
+                                getSelect_Time().setText(hourOfDay + ":" + minute + ":"+second);
                             }
-                        }, mHour, mMinute, false);
+                        }, mHour, mMinute, true);
                 timePickerDialog.show();
             }
         });
