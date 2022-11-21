@@ -14,8 +14,14 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.vicvilian.schoolagenda.Helper.DB_Actions;
 import com.vicvilian.schoolagenda.Helper.HelperDb;
+import com.vicvilian.schoolagenda.Model.MyModel;
 import com.vicvilian.schoolagenda.databinding.ActivityMain2Binding;
+import com.vicvilian.schoolagenda.ui.Create.CreateFragment;
+import com.vicvilian.schoolagenda.ui.Task.TaskFragment;
+
+import java.util.List;
 
 public class MainActivity2 extends AppCompatActivity {
 
@@ -49,17 +55,7 @@ public class MainActivity2 extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        //Instance database
 
-        try{
-            HelperDb my_db = new HelperDb(getApplicationContext());
-
-
-
-        }catch (Exception e){
-            Log.i("TestError","Something went wrong in insert");
-        }
-        HelperDb my_db = new HelperDb(getApplicationContext());
 
     }
 
@@ -70,4 +66,5 @@ public class MainActivity2 extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
 }

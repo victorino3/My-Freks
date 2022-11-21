@@ -7,6 +7,9 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="menu_create_task">Create Task</string>
+    <string name="days_to_finish">There are</string>
+    <string name="time_to_finish">days and</string>
+    <string name="last">hours left to finish the submission time</string>
     <string name="menu_task">My Tasks</string>
     <string name="menu_about_app">About App</string>
     <string name="title_activity_login">LoginActivity</string>

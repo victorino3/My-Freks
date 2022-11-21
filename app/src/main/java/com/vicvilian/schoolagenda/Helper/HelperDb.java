@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 public class HelperDb extends SQLiteOpenHelper {
     public static final String name_db = "DB_TASK";
     public static final String table_name = "Appointments";
-    public static final int version = 1;
+    public static final int version = 2;
     public HelperDb(@Nullable Context context) {
         super(context, name_db, null, version);
     }

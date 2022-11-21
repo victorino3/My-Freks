@@ -16,10 +16,15 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
+import com.vicvilian.schoolagenda.Helper.DB_Actions;
+import com.vicvilian.schoolagenda.Model.MyModel;
 import com.vicvilian.schoolagenda.R;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,6 +48,9 @@ public class CreateFragment extends Fragment {
     private RadioButton exam;
     private RadioButton school;
     private RadioButton week;
+
+    //Checked
+    public int myChecked;
 
 
 
@@ -86,9 +94,6 @@ public class CreateFragment extends Fragment {
                 mYear = c.get(Calendar.YEAR);
                 mMonth = c.get(Calendar.MONTH);
                 mDay = c.get(Calendar.DAY_OF_MONTH);
-                System.out.println(mYear+","+mMonth+","+mDay);
-
-
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
                         new DatePickerDialog.OnDateSetListener() {
 
@@ -133,11 +138,59 @@ public class CreateFragment extends Fragment {
                     getTeacher().setVisibility(View.VISIBLE);
                     getUnitCurricular().setVisibility(View.VISIBLE);
                     getContact().setVisibility(View.VISIBLE);
+                    myChecked = checked;
                 }else{
                     getTeacher().setVisibility(View.GONE);
                     getUnitCurricular().setVisibility(View.GONE);
                     getContact().setVisibility(View.GONE);
                 }
+            }
+        });
+
+
+        getBtn().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (getExam().getId() == myChecked ){
+                    String title = String.valueOf(getTitle().getText());
+                    String date = String.valueOf(getSelect_Date().getText());
+                    String time = String.valueOf(getSelect_Time().getText());
+                    String task = String.valueOf(getExam().getText());
+                    String unite = String.valueOf(getUnitCurricular().getText());
+                    String teacher = String.valueOf(getTeacher().getText());
+                    String colleagues_email = String.valueOf(getContact().getText());
+                    MyModel data = new MyModel(title,date,time,task,unite,teacher,colleagues_email);
+                    //Send to DB
+                    DB_Actions db_actions = new DB_Actions(getContext());
+                    db_actions.writeUserTask(data);
+                    System.out.println("I get no 255");
+
+                }else if(getSchool().getId() == myChecked){
+                    String title = String.valueOf(getTitle().getText());
+                    String date = String.valueOf(getSelect_Date().getText());
+                    String time = String.valueOf(getSelect_Time().getText());
+                    String task = String.valueOf(getSchool().getText());
+                    String unite = String.valueOf(getUnitCurricular().getText());
+                    String teacher = String.valueOf(getTeacher().getText());
+                    String colleagues_email = String.valueOf(getContact().getText());
+                    MyModel data = new MyModel(title,date,time,task,unite,teacher,colleagues_email);
+                    //Send to DB
+                    DB_Actions db_actions = new DB_Actions(getContext());
+                    db_actions.writeUserTask(data);
+                    System.out.println("I get no 2");
+
+
+
+                }else{
+                    String title = String.valueOf(getTitle().getText());
+                    String date = String.valueOf(getSelect_Date().getText());
+                    String time = String.valueOf(getSelect_Time().getText());
+                    String task = String.valueOf(getSchool().getText());
+
+                    MyModel data = new MyModel(title,date,time,task);
+                }
+
+
             }
         });
 

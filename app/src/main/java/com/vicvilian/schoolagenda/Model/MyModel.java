@@ -9,7 +9,7 @@ public class MyModel {
     private String teacherUserData;
     private String curricular_Unit;
 
-    public MyModel(String titleUserData, String startAt, String start_time, String taskType,String curricular_Unit, String colleagues_email, String teacherUserData) {
+    public MyModel(String titleUserData, String startAt, String start_time, String taskType,String curricular_Unit, String teacherUserData,String colleagues_email) {
         this.titleUserData = titleUserData;
         this.startAt = startAt;
         this.start_time = start_time;
@@ -19,6 +19,15 @@ public class MyModel {
         this.teacherUserData = teacherUserData;
 
     }
+    public MyModel(String titleUserData, String startAt, String start_time, String taskType) {
+        this.titleUserData = titleUserData;
+        this.startAt = startAt;
+        this.start_time = start_time;
+        this.taskType = taskType;
+
+
+    }
+    public MyModel() {}
 
     public String getTitleUserData() {
         return titleUserData;

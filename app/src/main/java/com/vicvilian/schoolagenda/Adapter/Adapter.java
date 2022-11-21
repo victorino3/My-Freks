@@ -1,21 +1,29 @@
 package com.vicvilian.schoolagenda.Adapter;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
+import com.vicvilian.schoolagenda.Model.MyModel;
 import com.vicvilian.schoolagenda.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Adapter extends RecyclerView.Adapter <Adapter.Myadapter>{
-
-    public Adapter() {
-
+    List<MyModel> buildModel;
+    public Adapter ( List<MyModel> buildModels) {
+        this.buildModel = buildModels;
     }
 
     @NonNull
@@ -29,24 +37,32 @@ public class Adapter extends RecyclerView.Adapter <Adapter.Myadapter>{
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull Myadapter holder, int position) {
-        holder.titleUserData.setText("PDM Text");
-        holder.startAt.setText("10-10-2022");
-        holder.teacherUserData.setText("Pedro inacio");
-        holder.timeLeft.setText("3 dias 72 horas");
+    public void onBindViewHolder( Myadapter holder, int position) {
+        if ( buildModel.size() > 0 ) {
+            MyModel object = buildModel.get(position);
+            holder.titleUserData.setText(object.getTitleUserData());
+            holder.startAt.setText(object.getStartAt());
+            holder.teacherUserData.setText(object.getTeacherUserData());
+            holder.curricular_unit.setText(object.getCurricular_Unit());
+            holder.timeLeft.setText("There are " + " 32 " + "days and " + object.getStart_time() + " left to finish the submission time");
+            Log.i("getHere", object.getTitleUserData());
+        }else{
+            //holder.message();
+        }
     }
 
     @Override
     public int getItemCount() {
-        return 6;
+        return this.buildModel.size();
     }
 
     //Recyclerview instance new class that must be create in this
     public static class  Myadapter extends RecyclerView.ViewHolder{
-        public TextView titleUserData;
-        public TextView startAt;
-        public TextView teacherUserData;
-        public TextView timeLeft;
+         TextView titleUserData;
+         TextView startAt;
+         TextView teacherUserData;
+         TextView timeLeft;
+         TextView curricular_unit;
 
         public Myadapter(@NonNull View itemView) {
             super(itemView);
@@ -55,6 +71,17 @@ public class Adapter extends RecyclerView.Adapter <Adapter.Myadapter>{
             startAt = itemView.findViewById(R.id.startAt_user);
             teacherUserData = itemView.findViewById(R.id.teacherUser);
             timeLeft = itemView.findViewById(R.id.timeLeft_user);
+            curricular_unit = itemView.findViewById(R.id.Unite_user);
+        }
+        public void message(){
+            Snackbar.make(
+                    itemView,
+                    "Do you to delete?",
+                    Snackbar.LENGTH_INDEFINITE
+            ).setAction("Delete", view1 -> {
+                //you can create new instance of snackBar and use dismiss to remove pop up
+            }).show();
         }
     }
+
 }
