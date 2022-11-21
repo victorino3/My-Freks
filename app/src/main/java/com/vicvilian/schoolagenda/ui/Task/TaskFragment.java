@@ -1,5 +1,8 @@
 package com.vicvilian.schoolagenda.ui.Task;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -32,6 +35,7 @@ public class TaskFragment extends Fragment {
     List<MyModel> buildModel = new ArrayList<>();
     public RecyclerView recyclerView;
 
+
     public TaskFragment() {
         // Required empty public constructor
     }
@@ -42,7 +46,7 @@ public class TaskFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_task, container, false);
         recyclerView = view.findViewById(R.id.recyclerView);
         loadData();
-        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(
+       recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(
                 getContext(),
                 recyclerView,
                 new RecyclerItemClickListener.OnItemClickListener() {
@@ -50,18 +54,52 @@ public class TaskFragment extends Fragment {
                     @Override
                     public void onItemClick(View view, int position) {
                         MyModel item = buildModel.get(position);
-                        Toast.makeText(getContext(), String.format("%s ",item.getTitleUserData()), Toast.LENGTH_SHORT).show();
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                        dialog.setTitle("Complete Task");
+                        dialog.setMessage("Do you want to Complete this Task" + item.getTitleUserData() + "?");
+                        dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                DB_Actions db_actions = new DB_Actions(getContext());
+                                if(db_actions.removeUserTask(item)){
+                                    loadData();
+                                    Toast.makeText(getContext(), String.format("Task Complete"), Toast.LENGTH_SHORT).show();
+                                }else{
+                                    Toast.makeText(getContext(), String.format("Something went wrong try later"), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                        dialog.setNegativeButton("No",null);
+                        dialog.create();
+                        dialog.show();
                     }
 
                     @Override
                     public void onLongItemClick(View view, int position) {
+                        MyModel item = buildModel.get(position);
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                        dialog.setTitle("Confirm action");
+                        dialog.setMessage("Do you want to delete this Task" + item.getTitleUserData() + "?");
+                        dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                 DB_Actions db_actions = new DB_Actions(getContext());
+                                if(db_actions.removeUserTask(item)){
+                                    loadData();
+                                    Toast.makeText(getContext(), String.format("Task deleted successfully"), Toast.LENGTH_SHORT).show();
+                                }else{
+                                    Toast.makeText(getContext(), String.format("Something went wrong try later"), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                        dialog.setNegativeButton("No",null);
+                        dialog.create();
+                        dialog.show();
 
                     }
 
                     @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                    }
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {}
                 }
         ));
 
@@ -76,18 +114,20 @@ public class TaskFragment extends Fragment {
         //Instance and Set an adapter
 
         Adapter adapterMade = new Adapter( buildModel );
-
         //set layout manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        //recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayout.VERTICAL));
+        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayout.VERTICAL));
         //Set listener
         //I removed
         //Setting adapter in recyclerview
         recyclerView.setAdapter(adapterMade);
         // Inflate the layout for this fragment
+
     }
+
+
 
     @Override
     public void onStart() {

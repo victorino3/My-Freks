@@ -1,13 +1,16 @@
 package com.vicvilian.schoolagenda.Adapter;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vicvilian.schoolagenda.Model.MyModel;
@@ -44,20 +47,12 @@ public class Adapter extends RecyclerView.Adapter <Adapter.Myadapter>{
         String daytime = object.getStartAt() +" "+object.getStart_time();
         long millisecond = getRemainTime(daytime);
         String dayTimes = convertMilliSecondToHourAndDay(millisecond);
-        if ( buildModel.size() > 0 ) {
-
             holder.titleUserData.setText(object.getTitleUserData());
             holder.startAt.setText(object.getStartAt());
             holder.teacherUserData.setText(object.getTeacherUserData());
             holder.curricular_unit.setText(object.getCurricular_Unit());
             holder.timeLeft.setText(dayTimes);
 
-            Log.i("timeTocal",daytime);
-            Log.i("getHere", object.getTitleUserData());
-        }else{
-            //holder.message();
-            //Should work on it
-        }
     }
 
     @Override
@@ -72,6 +67,7 @@ public class Adapter extends RecyclerView.Adapter <Adapter.Myadapter>{
          TextView teacherUserData;
          TextView timeLeft;
          TextView curricular_unit;
+         ImageButton submit;
 
         public Myadapter(@NonNull View itemView) {
             super(itemView);
@@ -81,6 +77,10 @@ public class Adapter extends RecyclerView.Adapter <Adapter.Myadapter>{
             teacherUserData = itemView.findViewById(R.id.teacherUser);
             timeLeft = itemView.findViewById(R.id.timeLeft_user);
             curricular_unit = itemView.findViewById(R.id.Unite_user);
+            submit = itemView.findViewById(R.id.submit);
+
+            //try
+
         }
 
     }
@@ -90,8 +90,7 @@ public class Adapter extends RecyclerView.Adapter <Adapter.Myadapter>{
                         .parse(daytime);
 
                 long remaining = date.getTime() - System.currentTimeMillis();
-                System.out.println( daytime);
-                System.out.println(date.getTime() );
+
                 return remaining;
                 //  return remaining;
             } catch (ParseException e) {

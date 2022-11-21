@@ -43,4 +43,6 @@
     <string name="time">Set Time</string>
     <string name="start">start at</string>
     <string name="time_left">Time left</string>
+    <string name="todo">Complete</string>
+    <string name="todo_submit">submit</string>
 </resources>

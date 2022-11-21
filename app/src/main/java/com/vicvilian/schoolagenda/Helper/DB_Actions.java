@@ -89,6 +89,14 @@ public class DB_Actions implements DAO_Interface {
 
     @Override
     public Boolean removeUserTask(MyModel data) {
+        try {
+            String[] args = {data.getTitleUserData().toString()};
+            this.write.delete(HelperDb.table_name,"task=?",args);
+
+        }catch (Exception e){
+            Log.e("Error in delete","Delete error");
+            return false;
+        }
         return true;
     }
 }
