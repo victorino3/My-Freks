@@ -8,8 +8,15 @@ public class MyModel {
     private String colleagues_email;
     private String teacherUserData;
     private String curricular_Unit;
+    private String emailUser;
+    private String password;
 
-    public MyModel(String titleUserData, String startAt, String start_time, String taskType,String curricular_Unit, String teacherUserData,String colleagues_email) {
+    public MyModel(String emailUser, String password) {
+        this.emailUser = emailUser;
+        this.password = password;
+    }
+
+    public MyModel(String titleUserData, String startAt, String start_time, String taskType, String curricular_Unit, String teacherUserData, String colleagues_email) {
         this.titleUserData = titleUserData;
         this.startAt = startAt;
         this.start_time = start_time;
@@ -27,6 +34,7 @@ public class MyModel {
 
 
     }
+
     public MyModel() {}
 
     public String getTitleUserData() {
@@ -84,5 +92,20 @@ public class MyModel {
 
     public void setCurricular_Unit(String curricular_Unit) {
         this.curricular_Unit = curricular_Unit;
+    }
+    public String getEmailUser() {
+        return emailUser;
+    }
+
+    public void setEmailUser(String emailUser) {
+        this.emailUser = emailUser;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

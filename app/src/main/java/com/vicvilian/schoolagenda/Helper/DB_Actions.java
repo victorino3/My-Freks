@@ -44,6 +44,7 @@ public class DB_Actions implements DAO_Interface {
 
 
 
+
         return true;
     }
 
@@ -78,7 +79,18 @@ public class DB_Actions implements DAO_Interface {
             buildModel.add(model);
 
             }
+        Log.i("Error in delete","Delete error"+ buildModel.size());
         return buildModel;
+    }
+
+    @Override
+    public List<MyModel> loginUser() {
+        return null;
+    }
+
+    @Override
+    public List<MyModel> register() {
+        return null;
     }
 
 
